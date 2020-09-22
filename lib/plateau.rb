@@ -3,7 +3,7 @@
 require_relative 'view'
 
 class Plateau
-  attr_accessor :plateau_size
+  attr_reader :plateau_size
 
   def initialize
     @plateau_size = []

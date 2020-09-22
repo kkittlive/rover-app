@@ -6,4 +6,4 @@ Code challenge completed by Janette Kwan
 
 * Run `gem install bundler && bundle install` to install dependcies
 * Run `ruby app.rb` to execute the app
-* Run `rspec` to execute the tests
+* Run `bundle exec rspec` to execute the tests
