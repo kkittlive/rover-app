@@ -1,28 +1,26 @@
 # frozen_string_literal: true
 
 class Rover
-  attr_accessor :start_xy, :route
+  attr_accessor :start_xy, :current_xy
 
   def initialize(start_xy)
     @start_xy = start_xy
   end
 
   def calculate_endpoint(route_path, plateau_size)
-    current_xy = start_xy
+    @current_xy = start_xy
 
     route_path.split('').each do |step|
       case step
       when 'L', 'R'
-        rotate(current_xy, step)
+        @current_xy = rotate(@current_xy, step)
       when 'M'
-        move(current_xy, plateau_size)
+        @current_xy = move(@current_xy, plateau_size)
       end
     end
 
     current_xy
   end
-
-  private
 
   def rotate(current_xy, step)
     directions = %w[N E S W]
@@ -33,6 +31,8 @@ class Rover
     elsif step == 'R'
       current_xy[2] = directions.rotate(1)[position]
     end
+
+    current_xy
   end
 
   def move(current_xy, plateau_size)
@@ -46,5 +46,7 @@ class Rover
     when 'W'
       current_xy[0] -= 1 if current_xy[0] > 0
     end
+
+    current_xy
   end
 end

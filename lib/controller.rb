@@ -25,7 +25,8 @@ class Controller
       path = View.ask_route(@results, @rover.start_xy)
       @route = Route.new(path)
 
-      @results << @rover.calculate_endpoint(@route.path, @plateau.size)
+      @rover.calculate_endpoint(@route.path, @plateau.size)
+      @results << @rover.current_xy
       @continue = View.ask_to_continue
     end
 
