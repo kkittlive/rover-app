@@ -20,7 +20,6 @@ class Controller
     @plateau.set_plateau_size
 
     while @continue == 'Y'
-      # reset
       @rover.set_start_xy(@results, @plateau.plateau_size)
       @rover.set_route(@results, @rover.start_xy)
       @results << @rover.calculate_endpoint

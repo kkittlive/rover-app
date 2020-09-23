@@ -45,6 +45,7 @@ class View
     if results.empty?
       puts "We can type 'L' for the rover to turn left (rotate 90deg counter-clockwise, without otherwise moving),"
       puts "'R' to turn right, and 'M' to move forward one step (in the direction they're already facing)."
+      puts "Any M's that will cause the rover to fall off the plateau will be skipped"
       puts "So we'll want to enter something like: 'LMLMLMLMM' or 'MMRMMRMRRM'."
     end
     print '> '

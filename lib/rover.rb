@@ -6,12 +6,7 @@ class Rover
   attr_reader :start_xy, :route
 
   def initialize
-    reset
-  end
-
-  def reset
     @start_xy = []
-    @route = ''
   end
 
   def set_start_xy(results, plateau_size)
