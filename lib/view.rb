@@ -19,7 +19,7 @@ class View
     end
 
     puts "Right on! So our plateau is #{size.split[0]} wide (x-axis) by #{size.split[1]} tall (y-axis)."
-    size.split.map! { |character| character.to_i }
+    size.split.map!(&:to_i)
   end
 
   def self.ask_start_xy(results, plateau_size)
