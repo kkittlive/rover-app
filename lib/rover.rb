@@ -17,7 +17,7 @@ class Rover
     @route = View.ask_route(results, start_xy)
   end
 
-  def calculate_endpoint
+  def calculate_endpoint(plateau_size)
     current_xy = start_xy
 
     route.split('').each do |step|
@@ -25,7 +25,7 @@ class Rover
       when 'L', 'R'
         rotate(current_xy, step)
       when 'M'
-        move(current_xy)
+        move(current_xy, plateau_size)
       end
     end
 
@@ -45,16 +45,16 @@ class Rover
     end
   end
 
-  def move(current_xy)
+  def move(current_xy, plateau_size)
     case current_xy[2]
     when 'N'
-      current_xy[1] += 1
+      current_xy[1] += 1 if current_xy[1] < plateau_size[1]
     when 'E'
-      current_xy[0] += 1
+      current_xy[0] += 1 if current_xy[0] < plateau_size[0]
     when 'S'
-      current_xy[1] -= 1
+      current_xy[1] -= 1 if current_xy[1] > 0
     when 'W'
-      current_xy[0] -= 1
+      current_xy[0] -= 1 if current_xy[0] > 0
     end
   end
 end

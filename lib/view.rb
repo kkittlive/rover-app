@@ -15,7 +15,7 @@ class View
     end
 
     puts "Right on! So our plateau is #{size.split[0]} wide (x-axis) by #{size.split[1]} tall (y-axis)."
-    size
+    size.split.map! { |character| character.to_i }
   end
 
   def self.ask_start_xy(results, plateau_size)
@@ -30,7 +30,7 @@ class View
     print '> '
 
     xy = gets.chomp
-    until xy.match(/\A\d \d [A-Z]\z/)
+    until xy.match(/\A\d \d [A-Z]\z/) && xy[0].to_i <= plateau_size[0] && xy[2].to_i <= plateau_size[1]
       print 'Bad format - try again: '
       xy = gets.chomp
     end

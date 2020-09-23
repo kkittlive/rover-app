@@ -20,9 +20,9 @@ class Controller
     @plateau.set_plateau_size
 
     while @continue == 'Y'
-      @rover.set_start_xy(@results, @plateau.plateau_size)
+      @rover.set_start_xy(@results, @plateau.size)
       @rover.set_route(@results, @rover.start_xy)
-      @results << @rover.calculate_endpoint
+      @results << @rover.calculate_endpoint(@plateau.size)
       @continue = View.ask_to_continue
     end
 
