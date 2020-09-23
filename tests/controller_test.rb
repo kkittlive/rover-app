@@ -8,8 +8,6 @@ class TestController < Minitest::Test
 
   def test_variables_are_initialized
     refute @controller.nil?
-    # refute @view.nil?
-    # refute @plateau.nil?
     # refute @rover.nil?
     # assert_equal('Y', @continue)
     # assert_equal([], @results)

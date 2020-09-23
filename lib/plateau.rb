@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'view'
-
 class Plateau
-  attr_reader :size
+  attr_accessor :size
 
-  def initialize
-    @size = []
-  end
-
-  def set_plateau_size
-    @size = View.ask_plateau_size
+  def initialize(size)
+    @size = size
   end
 end

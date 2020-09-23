@@ -1,26 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'view'
-
 class Rover
-  attr_reader :start_xy, :route
+  attr_accessor :start_xy, :route
 
-  def initialize
-    @start_xy = []
+  def initialize(start_xy)
+    @start_xy = start_xy
   end
 
-  def set_start_xy(results, plateau_size)
-    @start_xy = View.ask_start_xy(results, plateau_size)
-  end
-
-  def set_route(results, start_xy)
-    @route = View.ask_route(results, start_xy)
-  end
-
-  def calculate_endpoint(plateau_size)
+  def calculate_endpoint(route_path, plateau_size)
     current_xy = start_xy
 
-    route.split('').each do |step|
+    route_path.split('').each do |step|
       case step
       when 'L', 'R'
         rotate(current_xy, step)

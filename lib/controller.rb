@@ -3,12 +3,10 @@
 require_relative 'view'
 require_relative 'plateau'
 require_relative 'rover'
+require_relative 'route'
 
 class Controller
   def initialize
-    @view = View.new
-    @plateau = Plateau.new
-    @rover = Rover.new
     @continue = 'Y'
     @results = []
   end
@@ -17,12 +15,17 @@ class Controller
     puts '------------------------------------------------'
     puts "Welcome to jkwan's Mars Rover app."
 
-    @plateau.set_plateau_size
+    size = View.ask_plateau_size
+    @plateau = Plateau.new(size)
 
     while @continue == 'Y'
-      @rover.set_start_xy(@results, @plateau.size)
-      @rover.set_route(@results, @rover.start_xy)
-      @results << @rover.calculate_endpoint(@plateau.size)
+      start_xy = View.ask_start_xy(@results, @plateau.size)
+      @rover = Rover.new(start_xy)
+
+      path = View.ask_route(@results, @rover.start_xy)
+      @route = Route.new(path)
+
+      @results << @rover.calculate_endpoint(@route.path, @plateau.size)
       @continue = View.ask_to_continue
     end
 
