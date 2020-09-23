@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class View
+  def self.gets_chomp
+    gets.chomp
+  end
+
   def self.ask_plateau_size
     puts ''
     puts '--------'
@@ -8,10 +12,10 @@ class View
     puts "(e.g. for 5 x 5, type '5 5' and hit enter)"
     print '> '
 
-    size = gets.chomp
+    size = View.gets_chomp
     until size.match(/\A\d \d\z/)
       print 'Bad format - try again: '
-      size = gets.chomp
+      size = gets_chomp
     end
 
     puts "Right on! So our plateau is #{size.split[0]} wide (x-axis) by #{size.split[1]} tall (y-axis)."
@@ -29,10 +33,10 @@ class View
     end
     print '> '
 
-    xy = gets.chomp
+    xy = gets_chomp
     until xy.match(/\A\d \d [A-Z]\z/) && xy[0].to_i <= plateau_size[0] && xy[2].to_i <= plateau_size[1]
       print 'Bad format - try again: '
-      xy = gets.chomp
+      xy = gets_chomp
     end
 
     xy.split.map! { |character| character =~ /\d/ ? character.to_i : character }
@@ -50,10 +54,10 @@ class View
     end
     print '> '
 
-    route = gets.chomp
+    route = gets_chomp
     until route.match(/\A[LRM]+\z/)
       print 'Bad format - try again: '
-      route = gets.chomp
+      route = gets_chomp
     end
 
     route
@@ -65,10 +69,10 @@ class View
     puts "Would you like to plop another rover on this plateau? Enter 'Y' or 'N'"
     print '> '
 
-    continue = gets.chomp
+    continue = gets_chomp
     until continue.match(/\A[YN]\z/)
       print 'Bad format - try again: '
-      continue = gets.chomp
+      continue = gets_chomp
     end
 
     continue
